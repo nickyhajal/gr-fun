@@ -79,24 +79,50 @@ export function ProofEventDisplay({ productId, productTitle }: Props) {
       }
     );
   }
-  function showNext() {
+  async function showNext() {
     const now = +new Date();
     if (now - lastNew > MIN_VISIBLE_TIME) {
       clearTimeout(showTimout.current);
+
       if (queue.length) {
         const [next, ...rest] = queue;
-        setActive(next);
-        setLastNew(now);
-        setQueue([...rest]);
-        setUsed([...used, next]);
-        showTimout.current = setTimeout(() => {
-          setQueue((currVal) => [...currVal]);
-        }, random(MIN_NEXT_TIME, MAX_NEXT_TIME));
+
+        // If the event has an image, preload it and then show it
+        if (next.image) {
+          const img = new Image();
+          img.src = next.image;
+          img.onload = () => {
+            handleSetNext({ next, now, newQueue: rest });
+          };
+
+          // Otherwise show it immediately
+        } else {
+          handleSetNext({ next, now, newQueue: rest });
+        }
+
+        // If there are no more events, shuffle the used events and show them again
       } else {
         setQueue(shuffle([...used]));
         setUsed([]);
       }
     }
+  }
+  function handleSetNext({
+    next,
+    now,
+    newQueue,
+  }: {
+    next: Event;
+    now: number;
+    newQueue: Event[];
+  }) {
+    setActive(next);
+    setLastNew(now);
+    setQueue([...newQueue]);
+    setUsed([...used, next]);
+    showTimout.current = setTimeout(() => {
+      setQueue((currVal) => [...currVal]);
+    }, random(MIN_NEXT_TIME, MAX_NEXT_TIME));
   }
   return (
     <div className="border-t border-black py-6 px-4 overflow-hidden h-[5.3rem]">
