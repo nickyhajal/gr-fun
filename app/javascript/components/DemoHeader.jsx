@@ -18,23 +18,31 @@ const customEvents = [
 
 export function DemoHeader() {
   async function triggerPurchase() {
-    const res = await fetch("/api/v1/proof_events/create_demo", {
-      method: "POST",
-      body: JSON.stringify({ product: "Demo Product" }),
-    }).then((response) => response.json());
+    try {
+      const res = await fetch("/api/v1/proof_events/create_demo", {
+        method: "POST",
+        body: JSON.stringify({ product: "Demo Product" }),
+      }).then((response) => response.json());
+    } catch (e) {
+      console.error(e);
+    }
   }
   async function triggerEvent() {
-    const res = await fetch("/api/v1/proof_event/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        product_id: 1,
-        ...customEvents[random(0, customEvents.length - 1)],
-      }),
-    }).then((response) => response.json());
+    try {
+      const res = await fetch("/api/v1/proof_event/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          product_id: 1,
+          ...customEvents[random(0, customEvents.length - 1)],
+        }),
+      }).then((response) => response.json());
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   return (
