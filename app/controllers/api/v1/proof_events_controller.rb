@@ -8,9 +8,17 @@ class Api::V1::ProofEventsController < ApplicationController
     render json: events
   end
 
+  # GET /proof_events/1 or /proof_events/1.json
+  def show
+  end
+
   # GET /proof_events/new
   def new
     @proof_event = ProofEvent.new
+  end
+
+  # GET /proof_events/1/edit
+  def edit
   end
 
   # POST /proof_events or /proof_events.json
@@ -44,6 +52,11 @@ class Api::V1::ProofEventsController < ApplicationController
 
   private
 
+  def set_proof_event
+    @proof_event = ProofEvent.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
   def proof_event_params
     params.require(:proof_event).permit(:type, :message, :image, :username, :product_id, :event, :event_at)
   end
