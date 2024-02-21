@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      # get 'recipes/index'
-      # post 'recipes/create'
-      # get '/show/:id', to: 'recipes#show'
-      # delete '/destroy/:id', to: 'recipes#destroy'
+      get "proof_events", to: "proof_events#index"
+      post "proof_events/create", to: "proof_events#create"
+      post "proof_events/create_demo", to: "proof_events#create_demo"
     end
   end
-  get '/*path' => 'homepage#index'
-  root 'homepage#index'
+  get "/*path" => "homepage#index"
+  root "homepage#index"
 end
