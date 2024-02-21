@@ -4,6 +4,7 @@ import { BaseLayout } from "./layouts/BaseLayout";
 import { Checkout } from "./Checkout/Checkout";
 
 const productData = {
+  id: 1,
   title: "Small Bets - Lifetime Membership",
   price: 37500,
   banner: "https://public-files.gumroad.com/f2j01umg4977clc8naxdw0qpiw5z",
@@ -20,6 +21,7 @@ const productData = {
     percent: 50,
     title: "50% OFF ❄ WINTER HOLIDAYS DEAL",
   },
+  showProofEvents: true,
   description: `## Interested in entrepreneurship?
 
   ### Forget about starting a company.
