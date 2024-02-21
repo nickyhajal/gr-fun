@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { createConsumer } from "@rails/actioncable";
 import random from "lodash.random";
+import shuffle from "lodash.shuffle";
 import { intlFormatDistance } from "date-fns";
 import { relativeTime } from "../util/relativeTime";
 interface Props {
@@ -33,7 +34,7 @@ interface Event {
   image: string;
 }
 
-export function ProofEventWidget({ productId, productTitle }: Props) {
+export function ProofEventDisplay({ productId, productTitle }: Props) {
   const [queue, setQueue] = useState<Array<Event>>([]);
   const [used, setUsed] = useState<Array<Event>>([]);
   const [active, setActive] = useState<Event | null>(null);
@@ -82,14 +83,19 @@ export function ProofEventWidget({ productId, productTitle }: Props) {
     const now = +new Date();
     if (now - lastNew > MIN_VISIBLE_TIME) {
       clearTimeout(showTimout.current);
-      const [next, ...rest] = queue;
-      setActive(next);
-      setLastNew(now);
-      setQueue([...rest]);
-      setUsed([...used, next]);
-      showTimout.current = setTimeout(() => {
-        setQueue((currVal) => [...currVal]);
-      }, random(MIN_NEXT_TIME, MAX_NEXT_TIME));
+      if (queue.length) {
+        const [next, ...rest] = queue;
+        setActive(next);
+        setLastNew(now);
+        setQueue([...rest]);
+        setUsed([...used, next]);
+        showTimout.current = setTimeout(() => {
+          setQueue((currVal) => [...currVal]);
+        }, random(MIN_NEXT_TIME, MAX_NEXT_TIME));
+      } else {
+        setQueue(shuffle([...used]));
+        setUsed([]);
+      }
     }
   }
   return (
