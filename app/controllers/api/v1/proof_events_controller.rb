@@ -37,7 +37,7 @@ class Api::V1::ProofEventsController < ApplicationController
       "location": "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
       "image": "https://i.pravatar.cc/200?u=",
       "body": "%user% purchased %product%",
-      "created_at": date, "updated_at": date, "event_at": date,
+      "event_at": date,
     })
     render json: @proof_event
   end
