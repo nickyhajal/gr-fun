@@ -1,7 +1,3 @@
-require "redis"
-
-redis = Redis.new
-
 class ProofEvent < ApplicationRecord
   validates :body, presence: true
   validates :username, presence: true
@@ -10,24 +6,28 @@ class ProofEvent < ApplicationRecord
 
   MAX_LIST_LENGTH = 20
 
+  def self.redis
+    RedisConnection.instance
+  end
+
   def self.log(eventData)
 
     # Create new event
     event = ProofEvent.create(eventData)
-    key = "proofevents_#{event.product_id}"
+    key = self.keyForProduct(event.product_id)
 
     # Create or update cache
-    cache = redis.get(key)
+    cache = self.redis.get(key)
     events = JSON.parse(cache) if cache
     if events.kind_of?(Array)
-      if (events.length >= self.MAX_LIST_LENGTH)
+      if (events.length >= MAX_LIST_LENGTH)
         events.pop
       end
     else
       events = []
     end
-    events.prepend(event)
-    redis.set(key, events)
+    events.prepend(event.as_json)
+    self.redis.set(key, events.to_json)
 
     # Broadcast new event
     ActionCable.server.broadcast(
@@ -36,11 +36,18 @@ class ProofEvent < ApplicationRecord
     )
     event
   end
+
+  def self.keyForProduct(productId)
+    "proofevents_#{productId}"
+  end
   def self.fetchForProduct(productId)
-    cache = redis.get(key)
+    key = self.keyForProduct(productId)
+    cache = self.redis.get(key)
     events = JSON.parse(cache) if cache
     if !events
-      events = ProofEvent.where(product_id: params[:product_id]).order(event_at: :desc).limit(self.MAX_LIST_LENGTH)
+      events = ProofEvent.where(product_id: productId).order(event_at: :desc).limit(MAX_LIST_LENGTH)
+      self.redis.set(key, events.to_json)
+    else
     end
     events
   end
