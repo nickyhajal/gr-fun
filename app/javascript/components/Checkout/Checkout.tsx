@@ -1,11 +1,13 @@
 import React from "react";
 import Markdown from "react-markdown";
+import { ProofEventDisplay } from "../ProofEventDisplay";
 
 interface Props {
   product: Product;
 }
 
 export interface Product {
+  id: number;
   title: string;
   price: number;
   banner: string;
@@ -14,12 +16,14 @@ export interface Product {
   rating: number;
   numRatings: number;
   numSales: number;
+  showProofEvents: boolean;
   ratingDistributions: number[];
   offer: { percent: number; title: string };
 }
 
 export function Checkout({ product }: Props) {
   const {
+    id,
     banner,
     title,
     price,
@@ -30,6 +34,7 @@ export function Checkout({ product }: Props) {
     offer,
     description,
     ratingDistributions,
+    showProofEvents,
   } = product;
   let creatorName = `${creator.firstName} ${creator.lastName}`;
   const ratings = ratingDistributions.reverse();
@@ -118,9 +123,12 @@ export function Checkout({ product }: Props) {
           </header>
           <div className="flex flex-col gap-3">
             {ratings?.map((percent, i) => (
-              <div className="grid grid-cols-[auto_1fr_auto] gap-3 text-sm">
+              <div
+                className="grid grid-cols-[auto_1fr_auto] gap-3 text-sm"
+                key={`stars-${i}`}
+              >
                 <div>{5 - i} stars</div>
-                <div className="w-full h-5 border border-black rounded">
+                <div className="w-full h-5 border border-black rounded overflow-hidden">
                   <div
                     className="h-full bg-accent"
                     style={{ width: `${percent}%` }}
@@ -131,6 +139,9 @@ export function Checkout({ product }: Props) {
             ))}
           </div>
         </section>
+        {showProofEvents && (
+          <ProofEventDisplay productTitle={title} productId={id} />
+        )}
       </section>
     </article>
   );
