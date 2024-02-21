@@ -5,8 +5,8 @@ databases:
     plan: free
 
 services:
-  - type: gumroad-run-redis
-    name: cache
+  - type: redis
+    name: gumroad-fun-redis
     ipAllowList: [] # only allow internal connections
     plan: free # optional (defaults to starter)
     maxmemoryPolicy: allkeys-lfu
@@ -25,7 +25,7 @@ services:
       - key: REDIS_URL # this must match the name of the environment variable used in production.rb
         fromService:
           type: redis
-          name: cache
+          name: gumroad-fun-redis
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
