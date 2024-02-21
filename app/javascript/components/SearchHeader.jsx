@@ -3,8 +3,8 @@ import { Logo } from "./Logo";
 
 export function SearchHeader() {
   return (
-    <header className="py-8 w-full border-b border-black">
-      <div className="flex items-center gap-4 max-w-6xl  mx-auto">
+    <header className="py-8 w-full border-b border-black px-4">
+      <div className="flex md:items-center gap-4 max-w-6xl flex-col md:flex-row items-start mx-auto">
         <Logo />
         <div className="w-full py-3 px-4 rounded-[4px] border border-black flex gap-2 items-center">
           <input

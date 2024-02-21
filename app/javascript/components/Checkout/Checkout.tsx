@@ -39,22 +39,22 @@ export function Checkout({ product }: Props) {
   let creatorName = `${creator.firstName} ${creator.lastName}`;
   const ratings = ratingDistributions.reverse();
   return (
-    <article className="max-w-6xl mx-auto border border-black grid grid-cols-[2fr_1fr]">
+    <article className="max-w-6xl mx-auto border border-black grid lg:grid-cols-[2fr_1fr] grid-cols-1">
       {banner && (
         <img
           src={banner}
           alt={`${title} banner`}
-          className="w-full col-span-2 border-b border-black"
+          className="w-full lg:col-span-2 border-b border-black"
         />
       )}
 
-      <section className="border-r border-black">
+      <section className="lg:border-r border-black">
         <header className="p-6 border-b border-black">
           <h1 className="text-4xl">{title}</h1>
         </header>
-        <section className="grid grid-cols-[auto_auto_1fr] divide-x divide-black border-b border-black">
-          <div className="flex items-center px-6 py-4">
-            <div className="inline-grid relative">
+        <section className="grid grid-cols-[auto_1fr] gap-[0.0625rem] md:grid-cols-[auto_auto_1fr]  border-b border-black">
+          <div className="flex items-center px-6 py-4 outline outline-[0.0625rem] outline-offset-0">
+            <div className="inline-grid  relative">
               <div className="price">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
@@ -64,7 +64,7 @@ export function Checkout({ product }: Props) {
               </div>
             </div>
           </div>
-          <div className="flex items-center px-6 py-4 gap-2">
+          <div className="flex items-center px-6 py-4 gap-2 outline outline-[0.0625rem] outline-offset-0">
             <img
               src={creator.photo}
               alt={creatorName}
@@ -72,7 +72,7 @@ export function Checkout({ product }: Props) {
             />
             <div className="underline">{creatorName}</div>
           </div>
-          <div className="flex items-center px-6 py-4 gap-1">
+          <div className="flex items-center px-6 py-4 gap-1 w-full md:col-span-1 col-span-2 outline outline-[0.0625rem] outline-offset-0">
             <div className="flex gap-1">
               <div className="icon icon-solid-star"></div>
               <div className="icon icon-solid-star"></div>
@@ -112,8 +112,8 @@ export function Checkout({ product }: Props) {
             Pay once, member forever. No recurring fees.
           </div>
         </section>
-        <section className="p-4">
-          <header className="flex justify-between items-center">
+        <section className="p-4 pt-6 pb-8">
+          <header className="flex justify-between items-center h-6 mb-4">
             <h4 className="text-2xl">Ratings</h4>
             <div className="flex items-center px-6 py-4 gap-1">
               <div className="icon icon-solid-star mb-0.5"></div>

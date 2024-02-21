@@ -38,8 +38,8 @@ export function DemoHeader() {
   }
 
   return (
-    <header className="w-full gap-6 px-8 flex items-center bg-sky-600 font-semibold text-white border-b-2 border-sky-700 pt-4 pb-3">
-      <div>Demo Controls</div>
+    <header className="w-full gap-6 px-4 items-center flex lg:justify-start justify-between bg-sky-600 font-semibold text-white border-b-2 border-sky-700 pt-4 pb-3">
+      <div className="text-sm">Demo Controls</div>
       <div className="flex gap-2">
         <button
           className="bg-white/10 hover:bg-white/20 border border-white/20 rounded-md text-sm font-normal px-3 py-1.5"

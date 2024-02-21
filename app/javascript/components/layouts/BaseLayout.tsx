@@ -7,7 +7,7 @@ export function BaseLayout({ children }) {
     <div className="">
       <DemoHeader />
       <SearchHeader />
-      <section className="py-16">
+      <section className="py-16 px-4">
         <div className="">{children}</div>
       </section>
     </div>

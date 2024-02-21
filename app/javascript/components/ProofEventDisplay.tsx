@@ -125,7 +125,7 @@ export function ProofEventDisplay({ productId, productTitle }: Props) {
     }, random(MIN_NEXT_TIME, MAX_NEXT_TIME));
   }
   return (
-    <div className="border-t border-black py-6 px-4 overflow-hidden h-[5.3rem]">
+    <div className="border-t border-black py-6 px-4 overflow-hidden h-[5.15rem]">
       <TransitionGroup className="stack-grid">
         {active && (
           <CSSTransition
@@ -154,7 +154,7 @@ function ProofEventCheckoutRow({
   });
 
   return (
-    <div className="grid grid-cols-[2rem_1fr] gap-3 text-sm font-medium leading-snug">
+    <div className="grid grid-cols-[2rem_1fr] items-center gap-3 text-sm font-medium leading-snug">
       {event.image && (
         <img
           src={`${event.image}?${event.username}`}
@@ -162,12 +162,14 @@ function ProofEventCheckoutRow({
           className="w-8 h-8 rounded-full"
         />
       )}
-      <div className="flex-grow w-full">
+      <div className="flex-grow w-full leading-tight">
         {fill(event.body, {
           user: event.username || "Someone",
           product: "",
         })}{" "}
-        {relativeTime(event.event_at)} from {event.location}
+        <span className="text-black/80 text-xs">
+          {relativeTime(event.event_at)}, {event.location}
+        </span>
       </div>
     </div>
   );
