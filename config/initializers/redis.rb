@@ -1,8 +1,8 @@
 require "redis"
-redis = Redis.new
 
 class RedisConnection
   def self.instance
-    @redis ||= Redis.new
+    redisUrl = ENV["REDIS_URL"] || "redis://localhost:6379"
+    @redis ||= Redis.new(url: redisUrl)
   end
 end
