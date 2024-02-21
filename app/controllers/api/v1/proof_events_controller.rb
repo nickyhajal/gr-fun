@@ -4,7 +4,7 @@ class Api::V1::ProofEventsController < ApplicationController
 
   # GET /proof_events or /proof_events.json
   def index
-    events = ProofEvent.where(product_id: params[:product_id]).order(event_at: :desc).limit(20)
+    events = ProofEvent.fetchForProduct(params[:product_id])
     render json: events
   end
 
