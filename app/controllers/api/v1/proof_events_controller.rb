@@ -35,7 +35,7 @@ class Api::V1::ProofEventsController < ApplicationController
       "product_id": 1,
       "username": "#{Faker::Name.first_name} #{Faker::Name.last_name[0]}.",
       "location": "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
-      "image": "https://i.pravatar.cc/200?u=",
+      "image": "https://i.pravatar.cc/64?u=",
       "body": "%user% purchased %product%",
       "event_at": date,
     })

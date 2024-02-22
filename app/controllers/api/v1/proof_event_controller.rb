@@ -17,7 +17,7 @@ class Api::V1::ProofEventController < ApplicationController
       # "location": params[:location],
       # "image": params[:image],
       "username": "#{Faker::Name.first_name} #{Faker::Name.last_name[0]}.",
-      "image": "https://i.pravatar.cc/200?u=",
+      "image": "https://i.pravatar.cc/64?u=",
       "location": "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
       "body": params[:body],
       "event_at": DateTime.now,
