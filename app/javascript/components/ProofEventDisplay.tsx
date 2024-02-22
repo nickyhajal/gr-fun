@@ -66,7 +66,7 @@ export function ProofEventDisplay({ product }: Props) {
       {
         initialized() {},
         received(data) {
-          setQueue([data, ...queue]);
+          setQueue((curr) => [data, ...curr]);
         },
       }
     );
@@ -75,7 +75,6 @@ export function ProofEventDisplay({ product }: Props) {
   // Starts the process of showing the next event
   async function showNextEvent() {
     const now = +new Date();
-    console.log("show next");
 
     // If enough time has passed since the last event, show the next one
     // otherwise, wait for the next timeout
@@ -95,7 +94,7 @@ export function ProofEventDisplay({ product }: Props) {
           const img = new Image();
           img.src = next.image;
           img.onload = () => {
-            handleSetNext({ next, now, newQueue: rest });
+            setTimeout(() => handleSetNext({ next, now, newQueue: rest }), 200);
           };
 
           // Otherwise show it immediately
@@ -127,10 +126,10 @@ export function ProofEventDisplay({ product }: Props) {
       setQueue([...newQueue]);
       setUsed([...used, next]);
     }
-    console.log("hey");
+    const showNextIn = random(MIN_NEXT_TIME, MAX_NEXT_TIME);
     showTimout.current = setTimeout(() => {
       setQueue((currVal) => [...currVal]);
-    }, random(MIN_NEXT_TIME, MAX_NEXT_TIME));
+    }, showNextIn);
   }
 
   return (
