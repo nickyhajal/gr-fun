@@ -12,6 +12,8 @@ module.exports = {
     extend: {
       colors: {
         accent: "#37a9af",
+        canvas: "#f4f4f0",
+        pink: "rgb(255 144 232)",
       },
     },
   },
