@@ -6,7 +6,16 @@ export function relativeTime(str: string) {
     .replace("now", "just now")
     .replace(/-?\d+\sseconds?/, "just now")
     .replace("ago", "");
-  if (diff > 60000) {
+  if (
+    diff > 60000 &&
+    ![
+      "yesterday",
+      "last week",
+      "last month",
+      "last quearter",
+      "last year",
+    ].includes(raw)
+  ) {
     return `${raw} ago`;
   }
   return raw;
