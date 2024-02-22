@@ -24,6 +24,7 @@ const statEvents = [
 ];
 
 export function ProofEventDisplay({ product }: Props) {
+  const [showOnCheckout, setShowOnCheckout] = useState<boolean>(false);
   const [queue, setQueue] = useState<Array<Event>>([]);
   const [used, setUsed] = useState<Array<Event>>([]);
   const [immediate, setImmediate] = useState<boolean>(false);
@@ -35,6 +36,12 @@ export function ProofEventDisplay({ product }: Props) {
     async function initializeEvents() {
       try {
         // Receive most recent historical events and show them
+        const settingsRes = await fetch(
+          `/api/v1/proof_event_settings?product_id=${product.id}`
+        );
+        const settings = await settingsRes.json();
+        setShowOnCheckout(settings?.show_on_checkout);
+        if (!settings?.show_on_checkout) return;
         const res = await fetch(
           `/api/v1/proof_events?product_id=${product.id}`
         );
@@ -137,22 +144,24 @@ export function ProofEventDisplay({ product }: Props) {
   }
 
   return (
-    <div
-      id="proofEventDisplay"
-      className="border-t border-black py-6 px-4 overflow-hidden h-[5.15rem]"
-    >
-      <TransitionGroup className="stack-grid">
-        {active && (
-          <CSSTransition
-            key={active.id}
-            timeout={1000}
-            classNames={used.length > 1 ? "slide" : "slide-out"}
-            unmountOnExit
-          >
-            <ProofEventCheckoutRow event={active} product={product} />
-          </CSSTransition>
-        )}
-      </TransitionGroup>
-    </div>
+    showOnCheckout && (
+      <div
+        id="proofEventDisplay"
+        className="border-t border-black py-6 px-4 overflow-hidden h-[5.15rem]"
+      >
+        <TransitionGroup className="stack-grid">
+          {active && (
+            <CSSTransition
+              key={active.id}
+              timeout={1000}
+              classNames={used.length > 1 ? "slide" : "slide-out"}
+              unmountOnExit
+            >
+              <ProofEventCheckoutRow event={active} product={product} />
+            </CSSTransition>
+          )}
+        </TransitionGroup>
+      </div>
+    )
   );
 }
