@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_20_111151) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_22_140941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "proof_event_settings", force: :cascade do |t|
+    t.integer "product_id"
+    t.boolean "show_on_checkout"
+    t.boolean "hide_names"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "proof_events", force: :cascade do |t|
     t.string "kind"
