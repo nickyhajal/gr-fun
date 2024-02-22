@@ -2,10 +2,6 @@ class Api::V1::ProofEventController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   # GET /proof_events or /proof_events.json
-  def index
-    render json: { "hey": "htere" }
-  end
-
   def create_custom
     puts params[:body]
     # puts ">>>>>>>>>>>>>>>>>>> hy #{params[:product_id]}"
@@ -24,10 +20,4 @@ class Api::V1::ProofEventController < ApplicationController
     })
     render json: @proof_event
   end
-
-  def set_proof_event
-    @proof_event = ProofEvent.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
 end
