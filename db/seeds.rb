@@ -26,7 +26,7 @@ date = 300.minutes.ago
     "product_id": 1,
     "username": "#{Faker::Name.first_name} #{Faker::Name.last_name[0]}.",
     "location": "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
-    "image": "https://i.pravatar.cc/200?u=#{i}",
+    "image": "https://i.pravatar.cc/60?u=#{i}",
     "body": "%user% purchased %product%",
     "created_at": date, "updated_at": date, "event_at": date,
   })
