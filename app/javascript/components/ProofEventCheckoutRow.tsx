@@ -35,7 +35,7 @@ export function ProofEventCheckoutRow({
       ) : (
         event.image && (
           <img
-            src={`${event.image}?${event.username}`}
+            src={`${event.image}${event.id}`}
             alt={`${event.username} avatar`}
             className="w-8 h-8 rounded-full"
           />

@@ -26,6 +26,7 @@ const statEvents = [
 export function ProofEventDisplay({ product }: Props) {
   const [queue, setQueue] = useState<Array<Event>>([]);
   const [used, setUsed] = useState<Array<Event>>([]);
+  const [immediate, setImmediate] = useState<boolean>(false);
   const [active, setActive] = useState<Event | null>(null);
   const [lastNew, setLastNew] = useState(0);
   const showTimout = useRef(0);
@@ -66,6 +67,7 @@ export function ProofEventDisplay({ product }: Props) {
       {
         initialized() {},
         received(data) {
+          setImmediate(true);
           setQueue((curr) => [data, ...curr]);
         },
       }
@@ -80,19 +82,20 @@ export function ProofEventDisplay({ product }: Props) {
     // otherwise, wait for the next timeout
     if (now - lastNew > MIN_VISIBLE_TIME) {
       clearTimeout(showTimout.current);
-      if (queue.length % 3 === 0 && active?.kind !== "stat") {
+      if (!immediate && queue.length % 3 === 0 && active?.kind !== "stat") {
         handleSetNext({
           next: { ...statEvents[random(0, statEvents.length - 1)] },
           now,
           newQueue: queue,
         });
       } else if (queue.length) {
-        const [next, ...rest] = queue;
+        let [next, ...rest] = queue;
 
         // If the event has an image, preload it and then show it
+        next = { ...next, image: next.image?.replace("/200", "/64") };
         if (next.image) {
           const img = new Image();
-          img.src = next.image;
+          img.src = `${next.image}${next.id}`;
           img.onload = () => {
             setTimeout(() => handleSetNext({ next, now, newQueue: rest }), 200);
           };
@@ -120,6 +123,7 @@ export function ProofEventDisplay({ product }: Props) {
     now: number;
     newQueue: Event[];
   }) {
+    setImmediate(false);
     setActive(next);
     setLastNew(now);
     if (next.kind !== "stat") {
@@ -133,7 +137,10 @@ export function ProofEventDisplay({ product }: Props) {
   }
 
   return (
-    <div className="border-t border-black py-6 px-4 overflow-hidden h-[5.15rem]">
+    <div
+      id="proofEventDisplay"
+      className="border-t border-black py-6 px-4 overflow-hidden h-[5.15rem]"
+    >
       <TransitionGroup className="stack-grid">
         {active && (
           <CSSTransition
