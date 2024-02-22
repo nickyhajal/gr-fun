@@ -93,7 +93,7 @@ export function Checkout({ product }: Props) {
           <button className="bg-accent py-3 text-center text-white w-full border border-black rounded-[4px]">
             Add to Cart
           </button>
-          <div className="w-full p-3 border mt-4 rounded-[4px] flex gap-2 bg-blue-100/70 border-blue-700/40 text-sm">
+          {/* <div className="w-full p-3 border mt-4 rounded-[4px] flex gap-2 bg-blue-100/70 border-blue-700/40 text-sm">
             <div
               style={{ color: "rgb(var(--info))" }}
               className="icon icon-info-circle-fill"
@@ -101,7 +101,7 @@ export function Checkout({ product }: Props) {
             <div>
               <strong>{numSales.toLocaleString()}</strong> sales
             </div>
-          </div>
+          </div> */}
           <a
             href="/"
             className="underline text-sm block bg-transparent py-3 my-1 text-center w-full "
@@ -139,9 +139,7 @@ export function Checkout({ product }: Props) {
             ))}
           </div>
         </section>
-        {showProofEvents && (
-          <ProofEventDisplay productTitle={title} productId={id} />
-        )}
+        {showProofEvents && <ProofEventDisplay product={product} />}
       </section>
     </article>
   );

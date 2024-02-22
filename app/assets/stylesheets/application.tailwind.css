@@ -140,6 +140,9 @@ body {
     grid-area: 1 / 1 / 1 / 1;
   }
 }
+.proofevent-content p {
+  display: inline;
+}
 
 
 :root {

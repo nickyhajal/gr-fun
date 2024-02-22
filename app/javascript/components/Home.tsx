@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BaseLayout } from "./layouts/BaseLayout";
 import { Checkout } from "./Checkout/Checkout";
+import { Product } from "../types";
 
-const productData = {
+const productData: Product = {
   id: 1,
   title: "Small Bets - Lifetime Membership",
   price: 37500,
@@ -17,6 +18,12 @@ const productData = {
   numRatings: 154,
   ratingDistributions: [1, 1, 1, 1, 96],
   numSales: 4421,
+  stats: {
+    weeklySales: 145,
+    dailySales: 23,
+    monthlySales: 623,
+    totalSales: 4421,
+  },
   offer: {
     percent: 50,
     title: "50% OFF ❄ WINTER HOLIDAYS DEAL",
