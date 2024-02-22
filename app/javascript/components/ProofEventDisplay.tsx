@@ -108,10 +108,6 @@ export function ProofEventDisplay({ product }: Props) {
         setQueue(shuffle([...used]));
         setUsed([]);
       }
-    } else {
-      showTimout.current = setTimeout(() => {
-        setQueue((currVal) => [...currVal]);
-      }, random(MIN_NEXT_TIME, MAX_NEXT_TIME));
     }
   }
 
