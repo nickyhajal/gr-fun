@@ -166,13 +166,13 @@ export default () => {
             Save and continue
           </PopButton>
         </div>
-        <div className="flex pt-3 lg:pt-0 md:gap-6 gap-2 px-2 lg:px-0 md:justify-start justify-between overflow-x-auto">
+        <div className="flex pt-3 pb-3 -mb-3 lg:pt-0 md:gap-6 gap-2 px-2 lg:px-0 md:justify-start justify-between overflow-x-auto">
           {tabs.map((tab) => (
             <a
               role="tab"
               key={tab.label}
               href={tab.href}
-              className={`px-3 pt-2.5 text-nowrap  text-sm md:text-base pb-2 border hover:border-black rounded-full ${
+              className={`px-3 pt-2.5 text-nowrap whitespace-nowrap text-sm md:text-base pb-2 border hover:border-black rounded-full ${
                 tab.selected ? "bg-white border-black" : "border-transparent"
               }`}
               aria-selected={tab.selected}
