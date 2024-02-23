@@ -128,7 +128,9 @@ export function AdminLayout({ children }) {
               </section>
             ))}
           </nav>
-          <main className="col-[1] row-[1] bg-canvas">{children}</main>
+          <main className="col-[1] row-[1] bg-canvas pb-20 lg:pb-0">
+            {children}
+          </main>
         </section>
       </div>
       <Toaster
