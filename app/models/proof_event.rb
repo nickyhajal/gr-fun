@@ -14,6 +14,7 @@ class ProofEvent < ApplicationRecord
 
     # Create new event
     event = ProofEvent.create(eventData)
+    settings = ProofEventSetting.find_by(product_id: event.product_id)
     key = self.keyForProduct(event.product_id)
 
     # Create or update cache
@@ -30,6 +31,9 @@ class ProofEvent < ApplicationRecord
     self.redis.set(key, events.to_json)
 
     # Broadcast new event
+    if settings.hide_names
+      event["username"] = ""
+    end
     ActionCable.server.broadcast(
       "proofevents_#{event.product_id}",
       event
@@ -41,6 +45,7 @@ class ProofEvent < ApplicationRecord
     "proofevents_#{productId}"
   end
   def self.fetchForProduct(productId)
+    settings = ProofEventSetting.find_by(product_id: productId)
     key = self.keyForProduct(productId)
     cache = self.redis.get(key)
     events = JSON.parse(cache) if cache
@@ -48,6 +53,12 @@ class ProofEvent < ApplicationRecord
       events = ProofEvent.where(product_id: productId).order(event_at: :desc).limit(MAX_LIST_LENGTH)
       self.redis.set(key, events.to_json)
     else
+    end
+    if settings.hide_names
+      events = events.map do |event|
+        event["username"] = ""
+        event
+      end
     end
     events
   end
