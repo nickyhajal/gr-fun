@@ -66,22 +66,6 @@ function ProductProofEventForm({
         />
       </section>
       <section className="flex flex-col items-start">
-        <label htmlFor="valueLabel" className="pb-0.5">
-          Value Label (Optional)
-        </label>
-        <Input
-          type="text"
-          id="valueLabel"
-          value={events[inx].valueLabel}
-          className="w-full"
-          placeholder="How many pounds did you lose?"
-          onChange={(e) => setValue(inx, "valueLabel", e.target.value)}
-        />
-        <p className="text-sm text-left pt-1 text-black/70">
-          Add this if you want your customer to submit a value.
-        </p>
-      </section>
-      <section className="flex flex-col items-start">
         <label htmlFor="message" className="pb-0.5">
           Message
         </label>
@@ -95,6 +79,22 @@ function ProductProofEventForm({
         />
         <p className="text-sm text-left pt-1 text-black/70">
           This is the message that will appear in the feed.
+        </p>
+      </section>
+      <section className="flex flex-col items-start">
+        <label htmlFor="valueLabel" className="pb-0.5">
+          Value Label (Optional)
+        </label>
+        <Input
+          type="text"
+          id="valueLabel"
+          value={events[inx].valueLabel}
+          className="w-full"
+          placeholder="How many pounds did you lose?"
+          onChange={(e) => setValue(inx, "valueLabel", e.target.value)}
+        />
+        <p className="text-sm text-left pt-1 text-black/70">
+          Add this if you want your customer to submit a value.
         </p>
       </section>
     </form>
