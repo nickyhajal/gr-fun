@@ -4,6 +4,7 @@ import { PopButton } from "./ui/PopButton";
 import { Switch } from "./ui/Switch";
 import ProductProofActionEditor from "./ProductProofActionEditor";
 import { ProductProofEvent, Settings } from "../types";
+import toast from "react-hot-toast";
 
 const tabs = [
   {
@@ -109,6 +110,7 @@ export default () => {
         setSettings((curr) => ({ ...curr, ...json }));
         setEdited((curr) => ({ ...curr, ...json }));
       }
+      toast.success("API Key generated!");
     } catch (e) {
       console.error(e);
     }
@@ -145,6 +147,7 @@ export default () => {
           }),
         });
       }
+      toast.success("Changes saved!");
     } catch (e) {
       console.error(e);
     }
@@ -156,12 +159,12 @@ export default () => {
           Small Bets - Lifetime Membership
         </h1>
         <div className="lg:col-[2] col-[1/-1] px-2 mb-4 lg:px-0 lg:mb-0">
-          <button
+          <PopButton
             onClick={() => save()}
-            className="bg-black text-white rounded opacity-1 px-4 py-3 lg:w-fit w-full"
+            className="bg-black text-white hover:bg-pink hover:text-black rounded opacity-1 px-4 py-3 lg:w-fit w-full"
           >
-            Save and Continue
-          </button>
+            Save and continue
+          </PopButton>
         </div>
         <div className="flex pt-3 lg:pt-0 md:gap-6 gap-2 px-2 lg:px-0 md:justify-start justify-between overflow-x-auto">
           {tabs.map((tab) => (
@@ -228,18 +231,19 @@ export default () => {
                   </SettingBlock>
                   <SettingBlock last={false}>
                     <div className="">
-                      <h4 className="sm:text-xl text-base">Custom Events</h4>
+                      <h4 className="sm:text-xl text-base">Custom Results</h4>
                       <p className="sm:text-[0.97rem] text-sm pt-3">
                         Share your customers' results by creating custom events
                         they can report
                       </p>
-                      {events?.length && (
+                      {events?.length > 0 && (
                         <div className="flex flex-col gap-0.5 pt-4">
                           <div className="text-sm font-medium">
                             Submission URL
                           </div>
                           <input
                             type="text"
+                            readOnly
                             className="w-full py-2 px-4 text-sm border rounded-full"
                             value={`https://gr.matterloop.com/share-results/1`}
                           />
@@ -257,10 +261,10 @@ export default () => {
                   <SettingBlock last={false}>
                     <div className="">
                       <h4 className="sm:text-xl text-base">
-                        Send Custom Events
+                        Send Custom Results
                       </h4>
                       <p className="sm:text-[0.97rem] text-sm pt-3 pb-4">
-                        User your API key to automate sending customer results
+                        Use your API key to automate sending customer results
                         via Zapier, Slack, Discord or our API.
                       </p>
                       <a
@@ -284,6 +288,7 @@ export default () => {
                             <input
                               type="text"
                               value={settings?.key || ""}
+                              readOnly
                               className="p-3 w-full mb-3 bg-white border border-black rounded-md"
                             />
                           )}
@@ -302,7 +307,7 @@ export default () => {
                 </div>
               </div>
             ) : (
-              <div className="border border-dashed border-black mt-12 rounded-md bg-white p-8">
+              <div className="border border-dashed border-black lg:mt-12 mt-0 rounded-md bg-white p-8">
                 <img
                   src="https://assets.gumroad.com/packs/static/c21da069c635745d0f80.png"
                   alt="Dynamic Social Proof"
