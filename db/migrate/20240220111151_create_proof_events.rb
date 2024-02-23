@@ -5,6 +5,7 @@ class CreateProofEvents < ActiveRecord::Migration[7.1]
       t.string :body
       t.string :image
       t.string :username
+      t.string :value
       t.string :product_id
       t.string :event
       t.string :event_at

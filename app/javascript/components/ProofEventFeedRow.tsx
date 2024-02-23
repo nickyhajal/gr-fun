@@ -17,7 +17,7 @@ function fill(str, fills) {
   return filledStr;
 }
 
-export function ProofEventCheckoutRow({
+export function ProofEventFeedRow({
   event,
   product,
 }: {
@@ -29,7 +29,7 @@ export function ProofEventCheckoutRow({
   });
 
   return (
-    <div className="grid grid-cols-[2rem_1fr] items-center gap-3 text-sm font-medium leading-snug">
+    <div className="bg-canvas p-3 rounded grid grid-cols-[2rem_1fr] items-center gap-3 text-sm font-medium leading-snug">
       {event.kind === "stat" ? (
         <Coin className="w-8 h-8 skew-x-3" />
       ) : (

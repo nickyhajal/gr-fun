@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_232726) do
     t.string "body"
     t.string "image"
     t.string "username"
+    t.string "value"
     t.string "location"
     t.string "product_id"
     t.string "event"
@@ -43,5 +44,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_232726) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 end

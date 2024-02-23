@@ -3,6 +3,7 @@ export interface Event {
   kind: string;
   body: string;
   event: string;
+  value: string;
   username?: string;
   event_at?: string;
   location?: string;
@@ -46,4 +47,9 @@ export interface ProductProofEvent {
   label: string;
   valueLabel?: string;
   message: string;
+}
+
+export interface Option {
+  label: string;
+  value: string;
 }
