@@ -239,7 +239,7 @@ export default () => {
                       {events?.length > 0 && (
                         <div className="flex flex-col gap-0.5 pt-4">
                           <div className="text-sm font-medium">
-                            Submission URL
+                            Shareable Submission URL
                           </div>
                           <input
                             type="text"
