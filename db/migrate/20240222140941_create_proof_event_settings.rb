@@ -4,6 +4,7 @@ class CreateProofEventSettings < ActiveRecord::Migration[7.1]
       t.integer :product_id
       t.boolean :show_on_checkout
       t.boolean :hide_names
+      t.string :key
 
       t.timestamps
     end

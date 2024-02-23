@@ -4,11 +4,28 @@ class Api::V1::ProofEventSettingsController < ApplicationController
   # GET /proof_events or /proof_events.json
   def index
     settings = ProofEventSetting.find_by(product_id: params[:product_id])
-    render json: settings
+
+    # Key would be removed unless logged in user has permission
+    # and we are specifically requesting it to be included
+    settings_hash = settings.attributes
+    settings_hash.delete("key") unless params[:secure]
+
+    render json: settings_hash
   end
 
   # GET /proof_events/1/edit
   def edit
+  end
+
+  def generate_key
+    existing = ProofEventSetting.find_by(product_id: params[:product_id])
+    settings = {}
+    if existing
+      key = p "gr_" + SecureRandom.urlsafe_base64
+      existing.update({ key: key })
+      settings = ProofEventSetting.find_by(product_id: params[:product_id])
+    end
+    render json: settings
   end
 
   def upsert

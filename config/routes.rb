@@ -7,8 +7,11 @@ Rails.application.routes.draw do
       post "proof_event/create", to: "proof_event#create_custom"
 
       get "proof_event_settings", to: "proof_event_settings#index"
+      post "proof_event_settings/generate_key", to: "proof_event_settings#generate_key"
       post "proof_event_settings/upsert", to: "proof_event_settings#upsert"
       # get "proof_event", to: "proof_event#index"
+
+      # post "product_proof_event", to: "proof_event_settings#generate_key"
     end
   end
   get "/*path" => "homepage#index"
