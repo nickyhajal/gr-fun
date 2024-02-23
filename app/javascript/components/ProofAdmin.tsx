@@ -233,6 +233,18 @@ export default () => {
                         Share your customers' results by creating custom events
                         they can report
                       </p>
+                      {events?.length && (
+                        <div className="flex flex-col gap-0.5 pt-4">
+                          <div className="text-sm font-medium">
+                            Submission URL
+                          </div>
+                          <input
+                            type="text"
+                            className="w-full py-2 px-4 text-sm border rounded-full"
+                            value={`https://gr.matterloop.com/share-results/1`}
+                          />
+                        </div>
+                      )}
                     </div>
                     <div className="">
                       <ProductProofActionEditor
