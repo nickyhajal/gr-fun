@@ -110,7 +110,7 @@ export function DemoHeader({ context }: { context: string }) {
 
   return (
     <>
-      <header className="w-full z-20 flex-col md:flex-row lg:top-0 bottom-0 left-0 fixed gap-2 md:gap-6 px-4 items-center flex lg:justify-start justify-between bg-sky-600 font-semibold text-white border-b-2 border-sky-700 pt-2.5 md:pt-4 pb-3">
+      <header className="w-full z-20 flex-col md:flex-row lg:top-0 lg:bottom-auto bottom-0 left-0 fixed gap-2 md:gap-6 px-4 items-center flex lg:justify-start justify-between bg-sky-600 font-semibold text-white border-b-2 border-sky-700 pt-2.5 md:pt-4 pb-3">
         <div className="text-sm">Demo Controls</div>
         <div className="flex gap-2">
           {context === "admin" ? (
@@ -162,9 +162,6 @@ export function DemoHeader({ context }: { context: string }) {
           )}
         </div>
       </header>
-      <div className="h-16 mt-2 w-full md:h-12 md:mt-4 lg:block hidden">
-        &nbsp;
-      </div>
     </>
   );
 }

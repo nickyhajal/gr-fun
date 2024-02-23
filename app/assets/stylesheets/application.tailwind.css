@@ -4,6 +4,9 @@
 
 body {
   font-family: "Mabry Pro", "Avenir", sans-serif;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
 }
 
 html,

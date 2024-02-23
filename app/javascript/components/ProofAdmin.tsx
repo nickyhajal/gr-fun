@@ -154,7 +154,7 @@ export default () => {
   }
   return (
     <AdminLayout>
-      <header className="sticky z-40 top-16 bg-canvas lg:py-8 lg:px-16 px-0 py-4 border-b border-black grid grid-cols-[1fr_auto] items-center gap-0 lg:gap-4">
+      <header className="sticky z-40  top-0 bg-canvas lg:py-8 lg:px-16 px-0 py-4 border-b border-black grid grid-cols-[1fr_auto] items-center gap-0 lg:gap-4">
         <h1 className="text-4xl my-4 lg:block hidden">
           Small Bets - Lifetime Membership
         </h1>

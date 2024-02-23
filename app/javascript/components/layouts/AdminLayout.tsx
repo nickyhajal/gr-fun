@@ -82,7 +82,7 @@ export function AdminLayout({ children }) {
     <>
       <div className="h-full">
         <DemoHeader context="admin" />
-        <section className="grid grid-cols-[1fr] grid-rows-[1fr] h-full">
+        <section className="grid grid-cols-[1fr] grid-rows-[1fr] h-screen lg:pt-16">
           <nav
             className={`w-full lg:w-[12.8125rem] flex flex-col bg-black lg:row-[span_2] lg:col-[-3] row-[-4] overflow-y-auto ${
               menuOpen ? "open fixed w-full h-full z-30" : ""
@@ -128,7 +128,7 @@ export function AdminLayout({ children }) {
               </section>
             ))}
           </nav>
-          <main className="col-[1] row-[1] bg-canvas pb-20 lg:pb-0">
+          <main className="col-[1] row-[1] bg-canvas pb-20 lg:pb-0 overflow-y-auto">
             {children}
           </main>
         </section>
