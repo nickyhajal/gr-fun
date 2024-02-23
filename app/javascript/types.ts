@@ -35,3 +35,15 @@ export interface Product {
   showProofEvents: boolean;
   description: string;
 }
+export interface Settings {
+  hide_names: boolean;
+  show_on_checkout: boolean;
+  key: string;
+}
+export interface ProductProofEvent {
+  id?: number;
+  product_id: number;
+  label: string;
+  valueLabel?: string;
+  message: string;
+}
