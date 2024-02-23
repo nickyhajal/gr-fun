@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PopButton } from "./ui/PopButton";
-import Input from "./ui/Input";
+import { Input } from "./ui/Input";
 import { ProductProofEvent } from "../types";
 
 export default ({
@@ -26,6 +26,7 @@ export default ({
         ) : (
           events.map((event, inx) => (
             <ProductProofEventForm
+              key={event.id || inx}
               events={events}
               inx={inx}
               setValue={setValue}
