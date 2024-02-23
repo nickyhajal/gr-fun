@@ -12,6 +12,11 @@ Rails.application.routes.draw do
       # get "proof_event", to: "proof_event#index"
 
       # post "product_proof_event", to: "proof_event_settings#generate_key"
+      get "product_proof_events", to: "product_proof_events#index"
+      post "product_proof_events/upsert", to: "product_proof_events#upsert"
+
+      # get "testimonials", to: "testimonials#index"
+      # post "testimonial/upsert", to: "testomonial#upsert"
     end
   end
   get "/*path" => "homepage#index"
