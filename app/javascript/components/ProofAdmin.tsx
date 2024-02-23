@@ -258,7 +258,7 @@ export default () => {
                       />
                     </div>
                   </SettingBlock>
-                  <SettingBlock last={false}>
+                  <SettingBlock last={true}>
                     <div className="">
                       <h4 className="sm:text-xl text-base">
                         Send Custom Results
@@ -342,7 +342,7 @@ export function SettingBlock({ children, last }) {
     <section
       className={`grid lg:grid-cols-[25%_1fr] md:grid-cols-[50%_1fr] md:grid-rows-1 grid-rows-[auto_auto] grid-cols-1 ${
         last ? "" : "border-b border-black/20"
-      }  lg:gap-16 pt-12  gap-5 pb-10 w-full`}
+      }  lg:gap-16 lg:pt-12 pt-6  gap-5 pb-10 w-full`}
     >
       {children}
     </section>
