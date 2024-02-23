@@ -7,8 +7,11 @@ class Api::V1::ProofEventSettingsController < ApplicationController
 
     # Key would be removed unless logged in user has permission
     # and we are specifically requesting it to be included
-    settings_hash = settings.attributes
-    settings_hash.delete("key") unless params[:secure]
+    settings_hash = {}
+    if settings
+      settings_hash = settings.attributes
+      settings_hash.delete("key") unless params[:secure]
+    end
 
     render json: settings_hash
   end
