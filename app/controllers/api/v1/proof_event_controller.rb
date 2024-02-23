@@ -23,7 +23,7 @@ class Api::V1::ProofEventController < ApplicationController
       @proof_event = ProofEvent.log({
         "kind": "custom",
         "event": event,
-        "product_id": product_id,
+        "product_id": 1,
         "value": params[:value],
         # "username": params[:username],
         # "location": params[:location],

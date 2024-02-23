@@ -4,15 +4,15 @@ import Shepherd from "shepherd.js";
 
 const customEvents = [
   {
-    name: "first-customer",
+    event: "first-customer",
     body: "%user% got their first customer",
   },
   {
-    name: "launched",
+    event: "launched",
     body: "%user% launched a small bet",
   },
   {
-    name: "mrr",
+    event: "mrr",
     body: "%user% got to 2k MRR",
   },
 ];
@@ -104,7 +104,7 @@ export function DemoHeader({ context }: { context: string }) {
           },
         ],
       });
-      tour.start();
+      // tour.start();
     }
   }
 
