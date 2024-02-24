@@ -6,6 +6,7 @@ import { PopButton } from "./ui/PopButton";
 import { Input } from "./ui/Input";
 import { ProofEventFeed } from "./ProofEventFeed";
 import { ProductProofEvent, Option } from "../types";
+import { get } from "../util/loaders/get";
 
 interface Props {
   product: Product;
@@ -34,12 +35,19 @@ export function SubmitResultForm({ product }: Props) {
   const [userValue, setUserValue] = useState<string>("");
   const [eventOptions, setEventOptions] = useState<Option[]>([]);
   const [selectedEventId, setSelectedEventId] = useState<string>("");
+  const [testimonialsOn, setTestimonialsOn] = useState<boolean>(false);
   const [status, setStatus] = useState<string>("success");
   const [error, setError] = useState<string>("");
   const { banner, title } = product;
   useEffect(() => {
     async function init() {
       const res = await loadEvents({ productId: product.id });
+      const testSettings = await get(
+        `testimonial_settings?product_id=${product.id}`
+      );
+      if (testSettings?.show_testimonials) {
+        setTestimonialsOn(true);
+      }
       if (res.length) {
         setEvents((curr) => res);
         setEventOptions((curr) =>
@@ -63,7 +71,7 @@ export function SubmitResultForm({ product }: Props) {
     e.stopPropagation();
     e.preventDefault();
     if (selectedEvent?.valueLabel && !userValue) {
-      setError("Make sure to enter a value here");
+      return setError("Make sure to enter a value here");
     }
     try {
       const res = await fetch("/api/v1/proof_event/create", {
@@ -104,14 +112,27 @@ export function SubmitResultForm({ product }: Props) {
         </header>
         <section className="markdown px-6 py-8">
           {status === "success" ? (
-            <div className="md:p-8 p-6 md:m-6 text-center md:text-left lg:mb-32 bg-[#20a094] text-white rounded shadow-[0.5rem_0.5rem_0_#0e4e48]">
-              <div className="text-xl leading-snug md:text-2xl font-semibold mb-3 md:mb-0">
-                Thanks for sharing your result!
+            <>
+              <div className="md:p-8 p-6 md:m-6 text-center md:text-left lg:mb-32 bg-[#20a094] text-white rounded shadow-[0.5rem_0.5rem_0_#0e4e48]">
+                <div className="text-xl leading-snug md:text-2xl font-semibold mb-3 md:mb-0">
+                  Thanks for sharing your result!
+                </div>
+                <div className="text-lg leading-snug">
+                  Congratulations on your success 🎉
+                </div>
               </div>
-              <div className="text-lg leading-snug">
-                Congratulations on your success 🎉
-              </div>
-            </div>
+              {testimonialsOn && (
+                <div className="w-full">
+                  <PopButton
+                    className="mx-auto block text-center w-96 bg-white relative  -top-16  text-sm hover:bg-pink hover:text-black"
+                    label="Leave a testimonial"
+                    href="/share-testimonial/1"
+                  >
+                    Want to leave a testimonial for us?
+                  </PopButton>
+                </div>
+              )}
+            </>
           ) : (
             <>
               <div className="md:w-9/12 w-full">
