@@ -15,14 +15,10 @@ class Api::V1::TestimonialController < ApplicationController
   def upsert
     existing = false
     if params[:product_id] && params[:user_id]
-      puts 1
       existing = Testimonial.find_by(product_id: params[:product_id])
     elsif params[:id]
-      puts 2
-      puts params[:id]
       existing = Testimonial.find(params[:id])
     end
-    puts existing
     updates = testimonial_params.clone
     if existing
       updates.delete(:product_id)
