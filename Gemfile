@@ -72,3 +72,5 @@ end
 gem "tailwindcss-rails", "~> 2.3"
 
 gem "faker", "~> 3.2"
+
+gem "rack-cors", "~> 2.0"
