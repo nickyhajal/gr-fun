@@ -41,6 +41,21 @@ export interface Settings {
   show_on_checkout: boolean;
   key: string;
 }
+export interface TestimonialSettings {
+  show_testimonials: boolean;
+  title: string;
+  body: string;
+  product_id: number;
+}
+
+export interface Testimonial {
+  user_id: number;
+  user_name: string;
+  user_title: string;
+  product_id: number;
+  published?: boolean;
+  body: string;
+}
 export interface ProductProofEvent {
   id?: number;
   product_id: number;
