@@ -166,7 +166,7 @@ select {
 }
 
 .slide-enter {
-  transform: translateY(100%);
+  transform: translateY(0%);
   opacity: 0;
 }
 
@@ -184,7 +184,7 @@ select {
 
 .slide-exit-active,
 .slide-out-exit-active {
-  transform: translateY(100%);
+  transform: translateY(0%);
   opacity: 0;
   transition: transform 400ms, opacity 200ms;
 }
