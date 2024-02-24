@@ -93,7 +93,9 @@ export function AdminLayout({ children }) {
                 <span className="logo-g">&nbsp;</span>
               </a>
               <h1 className="text-center text-nowrap w-full">
-                Customer Success
+                {location.pathname.includes("testimonials")
+                  ? "Testimonials"
+                  : "Proof"}
               </h1>
               <span
                 onClick={() => setMenuOpen((curr) => !curr)}
