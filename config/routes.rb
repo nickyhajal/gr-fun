@@ -12,6 +12,14 @@ Rails.application.routes.draw do
       get "product_proof_events", to: "product_proof_events#index"
       post "product_proof_events/upsert", to: "product_proof_events#upsert"
 
+      get "testimonial_settings", to: "testimonial_settings#index"
+      post "testimonial_settings/upsert", to: "testimonial_settings#upsert"
+
+      get "testimonial", to: "testimonial#index"
+      get "testimonials", to: "testimonials#index"
+      post "testimonial/upsert", to: "testimonial#upsert"
+      post "testimonial/create", to: "testimonial#create"
+
       # get "testimonials", to: "testimonials#index"
       # post "testimonial/upsert", to: "testomonial#upsert"
     end
