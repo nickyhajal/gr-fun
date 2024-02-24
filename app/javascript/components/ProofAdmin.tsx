@@ -24,12 +24,12 @@ const tabs = [
   },
   {
     label: "Proof",
-    href: "#",
+    href: "/admin",
     selected: true,
   },
   {
     label: "Testimonials",
-    href: "#",
+    href: "/admin/testimonials",
     selected: false,
   },
 ];
@@ -237,14 +237,18 @@ export default () => {
                         they can report
                       </p>
                       {events?.length > 0 && (
-                        <div className="flex flex-col gap-0.5 pt-4">
+                        <div className="flex flex-col gap-0.5 pt-8">
                           <div className="text-sm font-medium">
                             Shareable Submission URL
                           </div>
                           <input
                             type="text"
                             readOnly
-                            className="w-full py-2 px-4 text-sm border rounded-full"
+                            onMouseOver={(e) => e.target.select()}
+                            onMouseOut={(e) =>
+                              (e.target.selectionStart = e.target.selectionEnd)
+                            }
+                            className="w-full py-2 px-4 text-sm border rounded-full focus:ring-0 focus:border-black"
                             value={`https://gr.matterloop.com/share-results/1`}
                           />
                         </div>
@@ -260,9 +264,7 @@ export default () => {
                   </SettingBlock>
                   <SettingBlock last={true}>
                     <div className="">
-                      <h4 className="sm:text-xl text-base">
-                        Send Custom Results
-                      </h4>
+                      <h4 className="sm:text-xl text-base">Automate Results</h4>
                       <p className="sm:text-[0.97rem] text-sm pt-3 pb-4">
                         Use your API key to automate sending customer results
                         via Zapier, Slack, Discord or our API.
