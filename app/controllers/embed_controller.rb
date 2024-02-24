@@ -1,6 +1,6 @@
 class EmbedController < ApplicationController
   skip_before_action :verify_authenticity_token
-  after_action :allow_iframe, only: :embed
+  after_action :allow_iframe, only: :testimonial
 
   def testimonial
     @t = Testimonial.find(params[:id])
