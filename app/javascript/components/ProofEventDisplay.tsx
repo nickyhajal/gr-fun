@@ -147,7 +147,7 @@ export function ProofEventDisplay({ product }: Props) {
     showOnCheckout && (
       <div
         id="proofEventDisplay"
-        className="border-t border-black py-6 px-4 overflow-hidden h-[5.15rem]"
+        className="border-b border-black py-6 px-4 overflow-hidden h-[5.15rem]"
       >
         <TransitionGroup className="stack-grid">
           {active && (
