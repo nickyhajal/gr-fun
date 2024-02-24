@@ -225,7 +225,7 @@ export default () => {
                       </h4>
                     </div>
                     <div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
                         {testimonials.map((testimonial) => (
                           <EditableTestimonial
                             key={testimonial.id}
