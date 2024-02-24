@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "embed/testimonial/:id", to: "embed#testimonial"
   namespace :api do
     namespace :v1 do
       get "proof_events", to: "proof_events#index"
