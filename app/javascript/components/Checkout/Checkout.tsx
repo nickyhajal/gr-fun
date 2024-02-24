@@ -1,6 +1,7 @@
 import React from "react";
 import Markdown from "react-markdown";
 import { ProofEventDisplay } from "../ProofEventDisplay";
+import { TestimonialsWidget } from "../TestimonialsWidget";
 
 interface Props {
   product: Product;
@@ -86,6 +87,9 @@ export function Checkout({ product }: Props) {
         <section className="markdown px-6 py-8">
           {description && <Markdown>{description}</Markdown>}
         </section>
+        <section className="markdown px-6 py-8">
+          <TestimonialsWidget product={product} />
+        </section>
       </section>
 
       <section>
@@ -112,6 +116,7 @@ export function Checkout({ product }: Props) {
             Pay once, member forever. No recurring fees.
           </div>
         </section>
+        {showProofEvents && <ProofEventDisplay product={product} />}
         <section className="p-4 pt-6 pb-8">
           <header className="flex justify-between items-center h-6 mb-4">
             <h4 className="text-2xl">Ratings</h4>
@@ -139,7 +144,6 @@ export function Checkout({ product }: Props) {
             ))}
           </div>
         </section>
-        {showProofEvents && <ProofEventDisplay product={product} />}
       </section>
     </article>
   );
