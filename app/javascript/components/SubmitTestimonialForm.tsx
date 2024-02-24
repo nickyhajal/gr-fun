@@ -14,6 +14,7 @@ import {
 } from "../types";
 import { Textarea } from "./ui/Textarea";
 import { post } from "../util/loaders/post";
+import { TestimonialBlock } from "./TestimonialBlock";
 
 interface Props {
   product: Product;
@@ -116,11 +117,10 @@ export function SubmitTestimonialForm({ product }: Props) {
             <>
               <div className="md:w-9/12 w-full">
                 <h2 className="md:text-3xl text-xl truncate mb-0">
-                  Share a Testimonial
+                  {settings?.title.replaceAll("%product%", product.title)}
                 </h2>
                 <p className="md:text-xl text-lg leading-relaxed -mt-3">
-                  What have been your favorite parts of Small Bets since you
-                  purchased? What have you received the most value from?
+                  {settings?.body.replaceAll("%product%", product.title)}
                 </p>
               </div>
               <div className="w-full mx-auto border-b border-black/30 my-6"></div>
@@ -208,8 +208,14 @@ export function SubmitTestimonialForm({ product }: Props) {
 
       <section>
         <section className=" p-4">
-          <div className="text-base font-semibold">Recent Results</div>
-          {/* <ProofEventFeed product={product} /> */}
+          <div className="text-base font-semibold mb-5 mt-6">
+            Recent Testimonials
+          </div>
+          <div className="flex flex-col gap-2">
+            {testimonials.slice(0, 3).map((t) => (
+              <TestimonialBlock key={t.id} testimonial={t} />
+            ))}
+          </div>
         </section>
       </section>
     </article>
