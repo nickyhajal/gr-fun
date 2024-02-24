@@ -67,7 +67,7 @@ export default () => {
     loadTestimonials();
   }, []);
   async function loadTestimonials() {
-    const json = await get(`testimonials?product_id=${productId}`);
+    const json = await get(`testimonials?product_id=${productId}&all=true`);
     setTestimonials(json);
   }
   async function loadSettings() {

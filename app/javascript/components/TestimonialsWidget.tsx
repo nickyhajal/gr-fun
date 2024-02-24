@@ -23,7 +23,7 @@ export function TestimonialsWidget({ product }: { product: Product }) {
         <div className="text-lg font-medium mb-3">What Others Are Saying</div>
         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
           {testimonials.slice(0, 3).map((t) => (
-            <TestimonialBlock testimonial={t} />
+            <TestimonialBlock testimonial={t} key={t.id} />
           ))}
         </div>
       </div>

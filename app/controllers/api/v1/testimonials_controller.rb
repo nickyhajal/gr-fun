@@ -5,7 +5,11 @@ class Api::V1::TestimonialsController < ApplicationController
   def index
     rows = []
     if params[:product_id]
-      rows = Testimonial.where(product_id: params[:product_id])
+      if params[:all]
+        rows = Testimonial.where(product_id: params[:product_id]).order("created_at DESC")
+      else
+        rows = Testimonial.where(product_id: params[:product_id]).where(published: true).order("created_at DESC")
+      end
     end
     render json: rows
   end
