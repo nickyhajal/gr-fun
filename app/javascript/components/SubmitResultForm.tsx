@@ -36,7 +36,7 @@ export function SubmitResultForm({ product }: Props) {
   const [eventOptions, setEventOptions] = useState<Option[]>([]);
   const [selectedEventId, setSelectedEventId] = useState<string>("");
   const [testimonialsOn, setTestimonialsOn] = useState<boolean>(false);
-  const [status, setStatus] = useState<string>("success");
+  const [status, setStatus] = useState<string>("");
   const [error, setError] = useState<string>("");
   const { banner, title } = product;
   useEffect(() => {
